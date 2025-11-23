@@ -174,7 +174,7 @@ window.addEventListener('scroll', () => {
 });
 
 const textElement = document.querySelector('.texto-animado');
-const texts = ['Java', 'Spring Boot', 'Java Script', 'Node.js', 'Criativo','Back-end', 'Front-end', 'Web'];
+const texts = ['Backend', 'APIs RESTful', 'Microservices', 'Sistemas Escaláveis', 'Desenvolvedor full-stack', ];
 let textIndex = 0;
 let charIndex = 0;
 let isDeleting = false;
@@ -268,7 +268,7 @@ window.addEventListener('scroll', () => {
     });
 });
 
-emailjs.init("YOUR_PUBLIC_KEY"); // Substitua pela sua chave pública do EmailJS mas eu n tenho ainda
+emailjs.init("YOUR_PUBLIC_KEY"); // Substituir pela sua chave pública do EmailJS mas eu n tenho ainda
 
 const contactForm = document.getElementById('contact-form');
 const successMessage = document.getElementById('form-success');
@@ -389,6 +389,6 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-console.log('🚀 Portfólio carregado com sucesso!');
-console.log('💼 Desenvolvido por Matheus Martins');
-console.log('🌐 https://github.com/MartnsProjetos');
+console.log('Portfólio carregado com sucesso!');
+console.log('Desenvolvido por Matheus Martins');
+console.log('https://github.com/MartnsDev');
