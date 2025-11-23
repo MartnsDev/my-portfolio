@@ -1,394 +1,331 @@
-AOS.init({
-    duration: 800,
-    once: true,
-    offset: 50,
-    easing: 'ease-out-cubic'
-});
-particlesJS('particles-js', {
-    particles: {
-        number: {
-            value: 80,
-            density: {
-                enable: true,
-                value_area: 800
-            }
-        },
-        color: {
-            value: '#007BFF'
-        },
-        shape: {
-            type: 'circle',
-            stroke: {
-                width: 0,
-                color: '#000000'
-            }
-        },
-        opacity: {
-            value: 0.5,
-            random: false,
-            anim: {
-                enable: false,
-                speed: 1,
-                opacity_min: 0.1,
-                sync: false
-            }
-        },
-        size: {
-            value: 3,
-            random: true,
-            anim: {
-                enable: false,
-                speed: 40,
-                size_min: 0.1,
-                sync: false
-            }
-        },
-        line_linked: {
-            enable: true,
-            distance: 150,
-            color: '#007BFF',
-            opacity: 0.4,
-            width: 1
-        },
-        move: {
-            enable: true,
-            speed: 6,
-            direction: 'none',
-            random: false,
-            straight: false,
-            out_mode: 'out',
-            bounce: false,
-            attract: {
-                enable: false,
-                rotateX: 600,
-                rotateY: 1200
-            }
-        }
-    },
-    interactivity: {
-        detect_on: 'canvas',
-        events: {
-            onhover: {
-                enable: true,
-                mode: 'repulse'
-            },
-            onclick: {
-                enable: true,
-                mode: 'push'
-            },
-            resize: true
-        },
-        modes: {
-            grab: {
-                distance: 400,
-                line_linked: {
-                    opacity: 1
-                }
-            },
-            bubble: {
-                distance: 400,
-                size: 40,
-                duration: 2,
-                opacity: 8,
-                speed: 3
-            },
-            repulse: {
-                distance: 200,
-                duration: 0.4
-            },
-            push: {
-                particles_nb: 4
-            },
-            remove: {
-                particles_nb: 2
-            }
-        }
-    },
-    retina_detect: true
-});
+// Importar EmailJS
+const emailjs = window.emailjs
 
-window.addEventListener('load', function() {
-    let percentage = 0;
-    const loadingPercentage = document.getElementById('loading-percentage');
-    const loadingScreen = document.getElementById('loading-screen');
-    
-    const interval = setInterval(() => {
-        percentage += Math.random() * 15;
-        if (percentage >= 100) {
-            percentage = 100;
-            clearInterval(interval);
-            setTimeout(() => {
-                loadingScreen.style.opacity = '0';
-                setTimeout(() => {
-                    loadingScreen.style.display = 'none';
-                    document.body.style.overflow = 'visible';
-                }, 500);
-            }, 500);
-        }
-        loadingPercentage.textContent = Math.floor(percentage) + '%';
-    }, 100);
-});
+//  EmailJS
+emailjs.init("YOUR_PUBLIC_KEY_HERE") // Replace with your EmailJS public key
 
-const menuIcon = document.querySelector('.menu-icon');
-const closeIcon = document.querySelector('.close-icon');
-const menu = document.querySelector('.menu-navegacao');
-const menuLinks = document.querySelectorAll('.lista-navegacao a');
 
-menuIcon.addEventListener('click', () => {
-    menu.classList.add('open');
-    document.body.style.overflow = 'hidden';
-});
-
-closeIcon.addEventListener('click', () => {
-    menu.classList.remove('open');
-    document.body.style.overflow = 'visible';
-});
-
-menuLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        menu.classList.remove('open');
-        document.body.style.overflow = 'visible';
-    });
-});
-
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-    });
-});
-
-window.addEventListener('scroll', () => {
-    const header = document.querySelector('.header');
-    if (window.scrollY > 100) {
-        header.style.background = 'rgba(10, 10, 26, 0.98)';
-    } else {
-        header.style.background = 'rgba(10, 10, 26, 0.95)';
+document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+  anchor.addEventListener("click", function (e) {
+    e.preventDefault()
+    const target = document.querySelector(this.getAttribute("href"))
+    if (target) {
+      target.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      })
     }
-});
+  })
+})
 
-const textElement = document.querySelector('.texto-animado');
-const texts = ['Backend', 'APIs RESTful', 'Microservices', 'Sistemas Escaláveis', 'Desenvolvedor full-stack', ];
-let textIndex = 0;
-let charIndex = 0;
-let isDeleting = false;
+// Mobile menu toggle
+const menuIcon = document.querySelector(".menu-icon")
+const menu = document.getElementById("menu")
+const closeIcon = document.querySelector(".close-icon")
+
+if (menuIcon) {
+  menuIcon.addEventListener("click", () => {
+    menu.classList.add("open")
+    document.body.style.overflow = "hidden"
+  })
+}
+
+if (closeIcon) {
+  closeIcon.addEventListener("click", () => {
+    menu.classList.remove("open")
+    document.body.style.overflow = "visible"
+  })
+}
+
+// Close menu on link click
+document.querySelectorAll(".lista-navegacao a").forEach((link) => {
+  link.addEventListener("click", () => {
+    menu.classList.remove("open")
+    document.body.style.overflow = "visible"
+  })
+})
+
+// Back to top button
+const backToTopBtn = document.getElementById("back-to-top")
+
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 300) {
+    backToTopBtn.classList.add("show")
+  } else {
+    backToTopBtn.classList.remove("show")
+  }
+})
+
+if (backToTopBtn) {
+  backToTopBtn.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" })
+  })
+}
+
+const textElement = document.querySelector(".texto-animado")
+const texts = ["Backend Developer", "Full Stack Developer", "API Developer", "Microsserviços", "Sistemas Escaláveis"]
+let textIndex = 0
+let charIndex = 0
+let isDeleting = false
 
 function typeWriter() {
-    const currentText = texts[textIndex];
-    
-    if (isDeleting) {
-        textElement.textContent = currentText.substring(0, charIndex - 1);
-        charIndex--;
-    } else {
-        textElement.textContent = currentText.substring(0, charIndex + 1);
-        charIndex++;
-    }
-    
-    let typeSpeed = isDeleting ? 80 : 120;
-    
-    if (!isDeleting && charIndex === currentText.length) {
-        typeSpeed = 1500;
-        isDeleting = true;
-    } else if (isDeleting && charIndex === 0) {
-        isDeleting = false;
-        textIndex = (textIndex + 1) % texts.length;
-        typeSpeed = 300;
-    }
-    
-    setTimeout(typeWriter, typeSpeed);
+  const currentText = texts[textIndex]
+
+  if (isDeleting) {
+    textElement.textContent = currentText.substring(0, charIndex - 1)
+    charIndex--
+  } else {
+    textElement.textContent = currentText.substring(0, charIndex + 1)
+    charIndex++
+  }
+
+  let typeSpeed = isDeleting ? 80 : 120
+
+  if (!isDeleting && charIndex === currentText.length) {
+    typeSpeed = 1500
+    isDeleting = true
+  } else if (isDeleting && charIndex === 0) {
+    isDeleting = false
+    textIndex = (textIndex + 1) % texts.length
+    typeSpeed = 300
+  }
+
+  setTimeout(typeWriter, typeSpeed)
 }
 
-typeWriter();
-
-const observerOptions = {
-    threshold: 0.5,
-    rootMargin: '0px 0px -100px 0px'
-};
-
-const skillsObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            const skillBars = entry.target.querySelectorAll('.skill-bar');
-            skillBars.forEach(bar => {
-                const level = bar.getAttribute('data-level');
-                setTimeout(() => {
-                    bar.style.width = level + '%';
-                }, 200);
-            });
-        }
-    });
-}, observerOptions);
-
-const skillsSection = document.querySelector('#skills');
-if (skillsSection) {
-    skillsObserver.observe(skillsSection);
+if (textElement) {
+  typeWriter()
 }
 
-const backToTopButton = document.getElementById('back-to-top');
+// Skill bar animation
+const animateSkillBars = () => {
+  const skillBars = document.querySelectorAll(".skill-bar")
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const level = entry.target.getAttribute("data-level")
+        entry.target.style.width = level + "%"
+      }
+    })
+  })
 
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 300) {
-        backToTopButton.classList.add('show');
-    } else {
-        backToTopButton.classList.remove('show');
+  skillBars.forEach((bar) => observer.observe(bar))
+}
+
+animateSkillBars()
+
+
+const contactForm = document.getElementById("contactForm")
+
+if (contactForm) {
+  contactForm.addEventListener("submit", async (e) => {
+    e.preventDefault()
+
+    const name = document.getElementById("name").value
+    const email = document.getElementById("email").value
+    const subject = document.getElementById("subject").value
+    const message = document.getElementById("message").value
+    const successMessage = document.getElementById("successMessage")
+    const errorMessage = document.getElementById("errorMessage")
+    const submitButton = contactForm.querySelector('button[type="submit"]')
+
+    const originalText = submitButton.innerHTML
+    submitButton.disabled = true
+    submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...'
+
+    // esconder mensagens
+    successMessage.style.display = "none"
+    errorMessage.style.display = "none"
+
+    try {
+      // enviar email
+      await emailjs.send(
+        "YOUR_SERVICE_ID_HERE", // Replace with your EmailJS service ID
+        "YOUR_TEMPLATE_ID_HERE", // Replace with your EmailJS template ID
+        {
+          from_name: name,
+          from_email: email,
+          subject: subject,
+          message: message,
+          to_email: "mtz.martinss03@gmail.com",
+        },
+      )
+
+      // mensagem de sucesso
+      successMessage.style.display = "block"
+
+      // Reset formulario
+      contactForm.reset()
+
+ 
+      setTimeout(() => {
+        successMessage.style.display = "none"
+      }, 5000)
+    } catch (error) {
+      console.error("Erro ao enviar email:", error)
+      errorMessage.style.display = "block"
+
+     
+      setTimeout(() => {
+        errorMessage.style.display = "none"
+      }, 5000)
+    } finally {
+     
+      submitButton.innerHTML = originalText
+      submitButton.disabled = false
     }
-});
-
-backToTopButton.addEventListener('click', () => {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
-});
-
-const sections = document.querySelectorAll('section[id]');
-const navLinks = document.querySelectorAll('.nav-desktop a, .lista-navegacao a');
-
-window.addEventListener('scroll', () => {
-    let current = '';
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        if (scrollY >= (sectionTop - 200)) {
-            current = section.getAttribute('id');
-        }
-    });
-
-    navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === '#' + current) {
-            link.classList.add('active');
-        }
-    });
-});
-
-emailjs.init("YOUR_PUBLIC_KEY"); // Substituir pela sua chave pública do EmailJS mas eu n tenho ainda
-
-const contactForm = document.getElementById('contact-form');
-const successMessage = document.getElementById('form-success');
-
-contactForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    const submitButton = contactForm.querySelector('button[type="submit"]');
-    const originalText = submitButton.innerHTML;
-    
-    submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
-    submitButton.disabled = true;
-    
-    // Enviar email (substitua pelos seus IDs do EmailJS)
-    emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', this)
-        .then(function() {
-            successMessage.style.display = 'block';
-            contactForm.reset();
-            
-            setTimeout(() => {
-                successMessage.style.display = 'none';
-            }, 5000);
-        }, function(error) {
-            alert('Erro ao enviar mensagem. Tente novamente.');
-            console.log('FAILED...', error);
-        })
-        .finally(() => {
-            submitButton.innerHTML = originalText;
-            submitButton.disabled = false;
-        });
-});
-
-const phoneInput = document.querySelector('input[name="user_phone"]');
-if (phoneInput) {
-    phoneInput.addEventListener('input', function(e) {
-        let value = e.target.value.replace(/\D/g, '');
-        value = value.replace(/^(\d{2})(\d{5})(\d{4}).*/, '($1) $2-$3');
-        e.target.value = value;
-    });
+  })
 }
 
-window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    const parallaxElements = document.querySelectorAll('.parallax');
-    
-    parallaxElements.forEach(element => {
-        const speed = element.dataset.speed || 0.5;
-        const yPos = -(scrolled * speed);
-        element.style.transform = `translateY(${yPos}px)`;
-    });
-});
+// Importar Particles.js
+const particlesJS = window.particlesJS
 
-const images = document.querySelectorAll('img[data-src]');
+// Particles.js 
+if (typeof particlesJS !== "undefined") {
+  particlesJS("particles-js", {
+    particles: {
+      number: { value: 80, density: { enable: true, value_area: 800 } },
+      color: { value: "#007bff" },
+      shape: { type: "circle" },
+      opacity: { value: 0.5, random: false },
+      size: { value: 3, random: true },
+      line_linked: {
+        enable: true,
+        distance: 150,
+        color: "#007bff",
+        opacity: 0.4,
+        width: 1,
+      },
+      move: {
+        enable: true,
+        speed: 6,
+        direction: "none",
+        random: false,
+        straight: false,
+        out_mode: "out",
+        bounce: false,
+      },
+    },
+    interactivity: {
+      detect_on: "canvas",
+      events: {
+        onhover: { enable: true, mode: "repulse" },
+        onclick: { enable: true, mode: "push" },
+        resize: true,
+      },
+      modes: {
+        repulse: { distance: 100, duration: 0.4 },
+        push: { particles_nb: 4 },
+      },
+    },
+    retina_detect: true,
+  })
+}
+
+// Import AOS
+const AOS = window.AOS
+
+// AOS initialization
+AOS.init({
+  duration: 1000,
+  offset: 100,
+  easing: "ease-in-out-cubic",
+})
+
+window.addEventListener("load", () => {
+  const loadingScreen = document.getElementById("loading-screen")
+  const loadingPercentage = document.getElementById("loading-percentage")
+
+  if (loadingScreen) {
+    let percentage = 0
+    const interval = setInterval(() => {
+      percentage += Math.random() * 15
+      if (percentage >= 100) {
+        percentage = 100
+        clearInterval(interval)
+
+        if (loadingPercentage) {
+          loadingPercentage.textContent = "100%"
+        }
+
+        setTimeout(() => {
+          loadingScreen.style.opacity = "0"
+          loadingScreen.style.visibility = "hidden"
+          loadingScreen.style.transition = "all 0.5s ease"
+        }, 500)
+      }
+
+      if (loadingPercentage) {
+        loadingPercentage.textContent = Math.floor(percentage) + "%"
+      }
+    }, 100)
+  }
+})
+
+const sections = document.querySelectorAll("section[id]")
+const navLinks = document.querySelectorAll(".nav-desktop a, .lista-navegacao a")
+
+window.addEventListener("scroll", () => {
+  let current = ""
+  sections.forEach((section) => {
+    const sectionTop = section.offsetTop
+    const sectionHeight = section.clientHeight
+    if (window.scrollY >= sectionTop - 200) {
+      current = section.getAttribute("id")
+    }
+  })
+
+  navLinks.forEach((link) => {
+    link.classList.remove("active")
+    if (link.getAttribute("href") === "#" + current) {
+      link.classList.add("active")
+    }
+  })
+})
+
+ 
+const images = document.querySelectorAll("img[data-src]")
 const imageObserver = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            const img = entry.target;
-            img.src = img.dataset.src;
-            img.classList.remove('lazy');
-            imageObserver.unobserve(img);
-        }
-    });
-});
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      const img = entry.target
+      img.src = img.dataset.src
+      img.classList.remove("lazy")
+      imageObserver.unobserve(img)
+    }
+  })
+})
 
-images.forEach(img => imageObserver.observe(img));
+images.forEach((img) => imageObserver.observe(img))
 
-let formSubmitted = false;
-contactForm.addEventListener('submit', function(e) {
+
+let formSubmitted = false
+if (contactForm) {
+  contactForm.addEventListener("submit", (e) => {
     if (formSubmitted) {
-        e.preventDefault();
-        return false;
+      e.preventDefault()
+      return false
     }
-    formSubmitted = true;
+    formSubmitted = true
     setTimeout(() => {
-        formSubmitted = false;
-    }, 5000);
-});
+      formSubmitted = false
+    }, 5000)
+  })
+}
 
-document.addEventListener('DOMContentLoaded', function() {
-    const floatingElements = document.querySelectorAll('.skill-card img, .certificate-image img');
-    floatingElements.forEach((element, index) => {
-        element.style.animationDelay = `${index * 0.2}s`;
-        element.classList.add('floating');
-    });
-    
-    const projectCards = document.querySelectorAll('.project-card');
-    projectCards.forEach((card, index) => {
-        card.style.animationDelay = `${index * 0.1}s`;
-    });
-    
-    setTimeout(() => {
-        typeWriter();
-    }, 1000);
-    
-    const certificateImages = document.querySelectorAll('.certificate-image img');
-    certificateImages.forEach(img => {
-        img.addEventListener('load', function() {
-            const container = this.parentElement;
-            const containerRatio = container.offsetWidth / container.offsetHeight;
-            const imageRatio = this.naturalWidth / this.naturalHeight;
-            
-            if (imageRatio > containerRatio) {
-                this.style.width = '100%';
-                this.style.height = 'auto';
-            } else {
-                this.style.width = 'auto';
-                this.style.height = '100%';
-            }
-        });
-    });
-});
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes blink {
-        0%, 50% { border-color: var(--primary-color); }
-        51%, 100% { border-color: transparent; }
-    }
-`;
-document.head.appendChild(style);
 
-console.log('Portfólio carregado com sucesso!');
-console.log('Desenvolvido por Matheus Martins');
-console.log('https://github.com/MartnsDev');
+document.addEventListener("DOMContentLoaded", () => {
+  const floatingElements = document.querySelectorAll(".skill-card img, .certificate-image img")
+  floatingElements.forEach((element, index) => {
+    element.style.animationDelay = `${index * 0.2}s`
+    element.classList.add("floating")
+  })
+
+  const projectCards = document.querySelectorAll(".project-card")
+  projectCards.forEach((card, index) => {
+    card.style.animationDelay = `${index * 0.1}s`
+  })
+})
+
+console.log("Portfólio carregado com sucesso!")
+console.log("Desenvolvido por Matheus Martins")
