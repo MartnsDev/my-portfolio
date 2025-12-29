@@ -4,7 +4,7 @@
 
 Meu portfólio pessoal desenvolvido com foco em design moderno, responsividade e performance. O projeto apresenta meus trabalhos, habilidades técnicas e informações de contato de forma profissional e interativa.
 
-🔗 **[Ver site ao vivo](https://martins-dev.netlify.app/)**
+🔗 **[Ver site](https://martins-dev.netlify.app/)**
 
 ## 📋 Sobre o Projeto
 
