@@ -6,7 +6,7 @@ const links = [
   { label: "LinkedIn", value: "in/matheusmartnsdev", href: "https://www.linkedin.com/in/matheusmartnsdev/" },
   { label: "GitHub", value: "@MartnsDev", href: "https://github.com/MartnsDev" },
   { label: "WhatsApp", value: "(11) 93264-9629", href: "https://wa.me/5511932649629" },
-  { label: "Site anterior", value: "martins-dev.netlify.app", href: "https://martins-dev.netlify.app" },
+  { label: "Instagram", value: "@martnsx_rb", href: "https://www.instagram.com/martnsx_rb/" },
   { label: "SaaS", value: "gestpro.site", href: "https://gestpro.site" },
 ];
 
